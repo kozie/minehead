@@ -4,8 +4,9 @@
   "description": "Minecraft head in your browser. Powered by WebGL",
   "main": "src/minehead.js",
   "scripts": {
-    "test": "http-server test",
-    "build": "browserify src/minehead.js -t babelify --outfile dist/minehead.js"
+    "test": "npm run compress && copyup dist/minehead.min.js test && http-server test",
+    "build": "browserify src/minehead.js -t babelify --outfile dist/minehead.js",
+    "compress": "npm run build && uglifyjs dist/minehead.js --compress --output dist/minehead.min.js"
   },
   "repository": {
     "type": "git",
@@ -17,14 +18,16 @@
     "webgl"
   ],
   "author": "Kozie",
-  "license": "ISC",
+  "license": "None",
   "bugs": {
     "url": "https://github.com/kozie/minehead/issues"
   },
   "homepage": "https://github.com/kozie/minehead#readme",
   "devDependencies": {
     "babelify": "^6.1.2",
+    "copyfiles": "^0.2.1",
     "http-server": "^0.8.0",
-    "three": "^0.71.0"
+    "three": "^0.71.0",
+    "uglify-js": "^2.4.23"
   }
 }
